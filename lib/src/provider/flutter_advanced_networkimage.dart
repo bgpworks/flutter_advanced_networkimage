@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:async';
-import 'dart:typed_data';
-import 'dart:ui' as ui show Codec, hashValues;
+import 'dart:ui' as ui show Codec;
 
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -126,7 +125,7 @@ class AdvancedNetworkImage extends ImageProvider<AdvancedNetworkImage> {
     if (memory) {
       cache ??= imageCache;
       final key = await obtainKey(configuration);
-      return cache!.evict(key);
+      return cache.evict(key);
     }
     if (disk) {
       return removeFromCache(url);
@@ -300,7 +299,7 @@ class AdvancedNetworkImage extends ImageProvider<AdvancedNetworkImage> {
   }
 
   @override
-  int get hashCode => ui.hashValues(url, scale, useDiskCache, retryLimit,
+  int get hashCode => Object.hash(url, scale, useDiskCache, retryLimit,
       retryDuration, retryDurationFactor, timeoutDuration);
 
   @override

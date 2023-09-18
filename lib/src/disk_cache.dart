@@ -288,8 +288,8 @@ class DiskCache {
 class CacheRule {
   const CacheRule({
     this.maxAge = const Duration(days: 30),
-    this.storeDirectory: StoreDirectoryType.temporary,
-    this.checksum: false,
+    this.storeDirectory = StoreDirectoryType.temporary,
+    this.checksum = false,
   });
 
   /// Set a maximum age for the cache file.
